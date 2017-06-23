@@ -1,0 +1,8 @@
+---
+# vars file for mpt-maestro-broker
+amq_broker_jvm_install: true
+amq_broker_user: maestro
+amq_broker_install_link: jboss-amq-7
+amq_broker_jvm: java-1.8.0-openjdk-devel
+amq_broker_instance_dir: runtime-maestro-broker
+amq_broker_download_url: http://www.apache.org/dist/activemq/activemq-artemis/2.1.0/apache-artemis-2.1.0-bin.zip
