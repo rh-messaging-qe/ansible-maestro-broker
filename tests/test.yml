@@ -12,7 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- hosts: localhost
+- name: Bring up docker containers
+  hosts: localhost
+  vars:
+    inventory:
+      - name: cnt-centos7
+        image: "chrismeyers/centos7"
+      - name: cnt-centos6
+        image: "chrismeyers/centos6"
+  roles:
+    - role: provision_docker
+      provision_docker_inventory: "{{ inventory }}"
+      provision_docker_privileged: true
+
+- hosts: docker_containers
   remote_user: root
   roles:
     - mpt-maestro-broker
