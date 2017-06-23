@@ -13,7 +13,7 @@
 # limitations under the License.
 TEST_INVENTORY?=tests/inventory
 
-containers = cnt-centos7
+containers = cnt-centos6 cnt-centos7
 
 clean:
 	rm -rf ansible.cfg ./build
