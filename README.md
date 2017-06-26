@@ -16,7 +16,10 @@ The package libselinux-python is required for running the test.
 Role Variables
 --------------
 
-This role does not provide any configuration at the moment.
+| Name              | Default Value       | Description          |
+|-------------------|---------------------|----------------------|
+| `maestro_broker_download_url` | http://www.apache.org/dist/activemq/activemq-artemis/2.1.0/apache-artemis-2.1.0-bin.zip | URL to download the maestro broker. |
+
 
 Dependencies
 ------------
