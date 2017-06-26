@@ -27,5 +27,7 @@
 
 - hosts: docker_containers
   remote_user: root
+  vars:
+    amq_broker_download_url: "{{ maestro_broker_download_url | default('http://www.apache.org/dist/activemq/activemq-artemis/2.1.0/apache-artemis-2.1.0-bin.zip') }}"
   roles:
     - mpt-maestro-broker
