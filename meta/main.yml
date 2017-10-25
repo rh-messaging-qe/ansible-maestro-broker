@@ -60,5 +60,5 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - src: https://github.com/msgqe/amq-broker.git
-    name: amq-broker
+  - src: https://github.com/msgqe/ansible-amq-broker.git
+    name: ansible-amq-broker

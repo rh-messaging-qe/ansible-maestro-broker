@@ -15,6 +15,6 @@
   scm: git
   name: provision_docker
 
-- src: https://github.com/msgqe/amq-broker.git
+- src: https://github.com/msgqe/ansible-amq-broker.git
   scm: git
-  name: amq-broker
+  name: ansible-amq-broker

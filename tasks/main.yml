@@ -15,4 +15,4 @@
 # tasks file for mpt-maestro-broker
 - name: Basic server setup
   include_role:
-    name: amq-broker
+    name: ansible-amq-broker
