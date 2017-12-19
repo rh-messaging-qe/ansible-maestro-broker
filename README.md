@@ -1,12 +1,12 @@
 Role Name
 =========
 
-This role installs a Message Broker, Apache Artemis 2.1.0, for Maestro.
+This role installs a Message Broker, Apache ActiveMQ 5.11.3, for Maestro.
 
 Build/Test Status
 ------------
 
-Linux Build Status: [![Linux Build Status](https://api.travis-ci.org/msgqe/mpt-maestro-broker.svg?branch=master)](https://travis-ci.org/msgqe/mpt-maestro-broker)
+Linux Build Status: [![Linux Build Status](https://api.travis-ci.org/msgqe/ansible-maestro-broker.svg?branch=master)](https://travis-ci.org/msgqe/ansible-maestro-broker)
 
 Requirements
 ------------
@@ -18,13 +18,12 @@ Role Variables
 
 | Name              | Default Value       | Description          |
 |-------------------|---------------------|----------------------|
-| `maestro_broker_download_url` | http://www.apache.org/dist/activemq/activemq-artemis/2.1.0/apache-artemis-2.1.0-bin.zip | URL to download the maestro broker. |
+| `maestro_user` | maestro | Maestro system user |
 
 
 Dependencies
 ------------
 
-This role depends on the [amq-broker](https://github.com/msgqe/amq-broker).
 
 Example Playbook
 ----------------
@@ -34,7 +33,7 @@ Including an example of how to use your role (for instance, with variables passe
   - hosts: localhost
     remote_user: root
     roles:
-      - mpt-maestro-broker
+      - ansible-maestro-broker
 
 License
 -------

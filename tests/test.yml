@@ -47,4 +47,4 @@
   vars:
     maestro_use_classic: true
   roles:
-    - mpt-maestro-broker
+    - ansible-maestro-broker
