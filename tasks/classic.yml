@@ -1,0 +1,71 @@
+- name: Download broker
+  tags:
+    - broker
+    - download
+  get_url:
+    url: "{{ maestro_broker_download_url }}"
+    dest: "{{ maestro_broker_download_dest }}/{{ maestro_broker_download_url | basename}}"
+    force: no
+  register: dist_get
+
+- name: Create user
+  tags:
+    - broker
+    - user
+  shell: id {{ maestro_broker_user }} || (useradd -m -U {{ maestro_broker_user }}  )
+
+- name: Unzip downloaded distribution to {{ maestro_broker_install_dest }}
+  unarchive:
+    src: "{{ maestro_broker_download_dest }}/{{ maestro_broker_download_url | basename }}"
+    dest: "{{ maestro_broker_install_dest }}/"
+    remote_src: True
+    list_files: yes
+  register: archive_contents
+
+- debug: msg="Latest maestro broker directory created is {{ archive_contents.files[0] | dirname }}"
+  tags:
+  - maestro
+  - link
+
+- name: "Create link to maestro install dir {{ maestro_broker_install_dest }}/{{ maestro_broker_install_link }}"
+  tags:
+    - maestro
+    - link
+  file:
+    src: "{{ maestro_broker_install_dest }}/{{ archive_contents.files[0] | dirname }}"
+    dest: "{{ maestro_broker_install_dest }}/{{ maestro_broker_install_link }}"
+    state: link
+    mode: 0755
+    force: true
+
+# For some reason it returns 1 when running on docker
+- name: Create Maestro Broker Instances
+  tags:
+    - maestro
+    - broker
+    - instance
+  ignore_errors: true
+  command: "{{ maestro_broker_install_dest }}/{{ maestro_broker_install_link }}/bin/activemq create {{ maestro_broker_install_dest }}/instances/{{ item.name }}"
+  with_items: "{{ maestro_broker_instances }}"
+
+- name: Configure Maestro Broker Instances
+  tags:
+    - maestro
+    - broker
+    - instance
+  template:
+    src: templates/classic/activemq.xml.j2
+    dest: "{{ maestro_broker_install_dest }}/instances/{{ item.name | basename }}/conf/activemq.xml"
+    mode: 0755
+  template:
+    src: templates/classic/jetty.xml.j2
+    dest: "{{ maestro_broker_install_dest }}/instances/{{ item.name | basename }}/conf/jetty.xml"
+    mode: 0755
+  with_items:
+    - "{{ maestro_broker_instances }}"
+
+- name: Ensure correct ownership
+  tags:
+    - maestro
+    - ownership
+  shell: chown -R "{{ maestro_broker_user }}":"{{ maestro_broker_user }}" "{{ maestro_broker_install_dest }}"

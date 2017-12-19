@@ -18,16 +18,33 @@
     inventory:
       - name: cnt-centos7
         image: "chrismeyers/centos7"
-      - name: cnt-centos6
-        image: "chrismeyers/centos6"
+      # - name: cnt-centos6
+      #   image: "chrismeyers/centos6"
   roles:
     - role: provision_docker
       provision_docker_inventory: "{{ inventory }}"
       provision_docker_privileged: true
 
+# - hosts: docker_containers
+#   remote_user: root
+#   vars:
+#     amq_broker_download_url: "{{ maestro_broker_download_url | default('http://www.apache.org/dist/activemq/activemq-artemis/2.4.0/apache-artemis-2.4.0-bin.zip') }}"
+#     maestro_use_classic: false
+#   roles:
+#     - mpt-maestro-broker
+#
+
+- hosts: docker_containers
+  tasks:
+    - name: Clean DB
+      when:
+        - ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS'
+      shell: rpm --rebuilddb
+
+
 - hosts: docker_containers
   remote_user: root
   vars:
-    amq_broker_download_url: "{{ maestro_broker_download_url | default('http://www.apache.org/dist/activemq/activemq-artemis/2.1.0/apache-artemis-2.1.0-bin.zip') }}"
+    maestro_use_classic: true
   roles:
     - mpt-maestro-broker

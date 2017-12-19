@@ -12,6 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-# defaults file for mpt-maestro-broker
-maestro_use_classic: true
-maestro_user: maestro
+# vars file for basic-server
+maestro_broker_dependencies: java-1.8.0-openjdk-devel

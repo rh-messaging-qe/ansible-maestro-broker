@@ -1,0 +1,8 @@
+---
+# vars file for mpt-maestro-broker
+amq_broker_jvm_install: true
+amq_broker_instance_require_login: false
+amq_broker_user: maestro
+amq_broker_install_link: jboss-amq-7
+amq_broker_jvm: java-1.8.0-openjdk-devel
+amq_broker_instance_dir: runtime-maestro-broker
