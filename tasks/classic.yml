@@ -44,8 +44,9 @@
     - maestro
     - broker
     - instance
-  ignore_errors: true
   command: "{{ maestro_broker_install_dest }}/{{ maestro_broker_install_link }}/bin/activemq create {{ maestro_broker_install_dest }}/instances/{{ item.name }}"
+  register: create_cmd_status
+  failed_when: create_cmd_status.rc >= 2
   with_items: "{{ maestro_broker_instances }}"
 
 - name: Configure Maestro Broker Instances
