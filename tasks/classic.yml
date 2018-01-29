@@ -123,6 +123,12 @@
     - "{{ maestro_broker_instances }}"
 
 
+- name: Ensure correct ownership
+  tags:
+    - maestro
+    - ownership
+  shell: chown -R "{{ maestro_broker_user }}":"{{ maestro_broker_user }}" "{{ maestro_broker_install_dest }}"
+
 - name: Start Maestro Broker instances
   tags:
     - maestro
@@ -133,8 +139,4 @@
   failed_when: create_cmd2_status.rc >= 2
   with_items: "{{ maestro_broker_instances }}"
 
-- name: Ensure correct ownership
-  tags:
-    - maestro
-    - ownership
-  shell: chown -R "{{ maestro_broker_user }}":"{{ maestro_broker_user }}" "{{ maestro_broker_install_dest }}"
+
