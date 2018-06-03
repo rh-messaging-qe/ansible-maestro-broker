@@ -17,14 +17,14 @@
   include_vars:
     file: vars/classic.yml
 
-# - name: Load variables (modern)
-#   when:
-#     - maestro_use_classic is defined and maestro_use_classic == false
-#   tags:
-#     - maestro
-#     - broker
-#   include_vars:
-#     file: vars/modern.yml
+- name: Load variables (modern)
+  when:
+    - maestro_use_classic is defined and maestro_use_classic == false
+  tags:
+    - maestro
+    - broker
+  include_vars:
+    file: vars/modern.yml
 
 - name: Install common packages
   tags:
@@ -41,11 +41,11 @@
   include: classic.yml
 
 
-# - name: Maestro Broker setup (modern)
-#   when:
-#     - maestro_use_classic is defined and maestro_use_classic == false
-#   tags:
-#     - maestro
-#     - broker
-#   include_role:
-#     name: ansible-amq-broker
+- name: Maestro Broker setup (modern)
+  when:
+    - maestro_use_classic is defined and maestro_use_classic == false
+  tags:
+    - maestro
+    - broker
+  include_role:
+    name: ansible-amq-broker
