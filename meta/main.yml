@@ -62,5 +62,3 @@ galaxy_info:
 dependencies:
   - src: https://github.com/msgqe/ansible-basic-server.git
     name: ansible-basic-server
-  - src: https://github.com/msgqe/ansible-amq-broker.git
-    name: ansible-amq-broker
