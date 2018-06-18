@@ -1,7 +1,7 @@
 ---
 # vars file for mpt-maestro-broker
 
-maestro_broker_download_url: https://archive.apache.org/dist/activemq/5.11.3/apache-activemq-5.11.3-bin.tar.gz
+maestro_broker_download_url: https://archive.apache.org/dist/activemq/5.15.4/apache-activemq-5.15.4-bin.tar.gz
 maestro_broker_download_dest: /tmp
 maestro_broker_user: maestro
 maestro_broker_install_dest: "/home/{{ maestro_broker_user }}"
