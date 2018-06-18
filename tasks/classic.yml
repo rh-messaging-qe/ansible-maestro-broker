@@ -134,6 +134,8 @@
     - maestro
     - broker
     - instance
+  become: true
+  become_user: "{{ maestro_broker_user }}"
   shell: "{{ maestro_broker_install_dest }}/instances/{{ item.name }}/bin/{{ item.name }} start"
   register: create_cmd2_status
   failed_when: create_cmd2_status.rc >= 2
