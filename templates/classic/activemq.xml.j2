@@ -110,7 +110,7 @@
         -->
         <transportConnectors>
             <!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB -->
-            <transportConnector name="mqtt" uri="mqtt://0.0.0.0:{{ item.ports['mqtt'] }}?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600;transport.useInactivityMonitor=false"/>
+            <transportConnector name="mqtt" uri="mqtt://0.0.0.0:{{ item.ports['mqtt'] }}?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600&amp;transport.useInactivityMonitor=false"/>
         </transportConnectors>
 
         <!-- destroy the spring context on shutdown to stop jetty -->
